@@ -1,6 +1,8 @@
 const sc = require('sourcecred').default
 const fetch = require('node-fetch')
 const dotenv = require('dotenv')
+const { dbHandler } = require('./utilities/db')
+require('./db/connection')
 
 dotenv.config()
 
@@ -59,6 +61,7 @@ async function getTop10() {
       top10.push(accounts[count])
     }
     console.log(top10)
+    dbHandler(top10)
   } catch (err) {
     console.log('error:', err)
   }
