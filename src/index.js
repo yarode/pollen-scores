@@ -71,5 +71,4 @@ run()
 
 cron.schedule(process.env.CRON_SCHEDULER, function() {
   run()
-  console.log('running every minute')
 })
