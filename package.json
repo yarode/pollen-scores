@@ -42,6 +42,7 @@
     "crone": "0.0.1",
     "dotenv": "^8.2.0",
     "mongoose": "^5.10.9",
+    "node-cron": "^2.0.3",
     "sourcecred": "^0.7.1"
   }
 }

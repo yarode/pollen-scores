@@ -8,6 +8,11 @@ const ENV_VARS = {
     'YOUR_URI_HERE',
     true,
   ],
+  CRON_SCHEDULER: [
+    process.env.CRON_SCHEDULER,
+    'CRON_SCHEDULER_HERE',
+    true,
+  ]
 }
 
 function environment(name) {

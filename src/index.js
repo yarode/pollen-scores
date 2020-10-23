@@ -2,6 +2,7 @@ const sc = require('sourcecred').default
 const fetch = require('node-fetch')
 const dotenv = require('dotenv')
 const { dbHandler } = require('./utilities/db')
+const cron = require('node-cron')
 require('./db/connection')
 
 dotenv.config()
@@ -46,7 +47,7 @@ const merge = (left, right) => {
   return result;
 }
 
-async function getTop10() {
+async function run() {
   const credAccounts = await(
     await fetch('https://raw.githubusercontent.com/1Hive/pollen/gh-pages/output/accounts.json')
   ).json()
@@ -60,11 +61,15 @@ async function getTop10() {
       if(accounts[count].account.identity.name === 'sourcecred') continue
       top10.push(accounts[count])
     }
-    console.log(top10)
     dbHandler(top10)
   } catch (err) {
     console.log('error:', err)
   }
 }
 
-getTop10()
+run()
+
+cron.schedule(process.env.CRON_SCHEDULER, function() {
+  run()
+  console.log('running every minute')
+})

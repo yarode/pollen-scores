@@ -8,3 +8,5 @@ const ScoreboardSchema = new mongoose.Schema({
     cred: {type:Number}
   }],
 }, { versionKey: false })
+
+module.exports = mongoose.model('Scoreboard', ScoreboardSchema)
